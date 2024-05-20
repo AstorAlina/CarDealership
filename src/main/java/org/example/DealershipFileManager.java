@@ -77,6 +77,10 @@ public class DealershipFileManager {
                         vehicle.getColor(),
                         vehicle.getOdometer(),
                         vehicle.getPrice());
+                        //vehicle.contractDate());
+                        //vehicle.customerName());
+                        //vehicle.customerEmail());
+                        //vehicle.vehicleSold());
                 writer.newLine();
                 writer.write(inventoryToFile);
                 //optional message
@@ -86,4 +90,6 @@ public class DealershipFileManager {
             System.out.println("Couldn't open the file");
         }
     }
+
+
 }
