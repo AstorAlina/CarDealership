@@ -204,7 +204,7 @@ public class UserInterface {
         if (vehicle == null) {
             System.out.println("Vehicle not found.");
         } else {
-            dealership.removeVehicle(vehicle);
+            dealership.removeVehicle(vin);
             fileManager.saveDealership(dealership);
             System.out.println("Vehicle removed and saved successfully.");
             processGetAllVehiclesRequest();
@@ -259,11 +259,11 @@ public class UserInterface {
             finance = false;
 
 
-            Vehicle vehicle = (Vehicle) dealership.getVehiclesByVin(vin);
+            Vehicle vehicle = dealership.vehicleIsAvailable(vin);
             Contract contract = new SalesContract(name, email, vehicle, finance);
 
             ContractFileManager.saveContract(contract);
-            dealership.removeVehicle(vehicle);
+            dealership.removeVehicle(vin);
             fileManager.saveDealership(dealership);
         }
     }
@@ -279,7 +279,7 @@ public class UserInterface {
             Vehicle vehicle = (Vehicle) dealership.getVehiclesByVin(vehicleVin);
             Contract contract = new LeaseContract(name, emailAddress, vehicle);
             ContractFileManager.saveContract(contract);
-            dealership.removeVehicle(vehicle);
+            dealership.removeVehicle(vehicleVin);
             fileManager.saveDealership(dealership);
         }
 

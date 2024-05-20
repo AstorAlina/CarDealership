@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class DealershipFileManager {
 
-    private String inputToFile;
+    private static String inputToFile;
 
-    public String getInputToFile() {
+    public static String getInputToFile() {
         return inputToFile;
     }
 
@@ -17,7 +17,7 @@ public class DealershipFileManager {
 
     private static final String INVENTORY_FILE = "src/main/resources/";
     //This method should load and read the inventory.csv
-    public Dealership getDealership() {
+    public static Dealership getDealership() {
         Dealership dealership = new Dealership("", "", "");
 
         //Get user input to choose which inventory.csv to view
@@ -51,6 +51,7 @@ public class DealershipFileManager {
                 vehicles.add(vehicle);
             }
             dealership.setVehicle(vehicles);
+            dealership.setInventory(vehicles);
         }
 
         catch(IOException ex){
@@ -60,7 +61,7 @@ public class DealershipFileManager {
     }
 
     //This method will overwrite the inventory.csv file with the current dealership information and inventory list
-    public void saveDealership(Dealership dealership) {
+    public static void saveDealership(Dealership dealership) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(INVENTORY_FILE, false))) {
             //need to write to csv the title line
             String titleToFile = String.format("%s|%s|%s", dealership.getName(), dealership.getAddress(), dealership.getPhone());

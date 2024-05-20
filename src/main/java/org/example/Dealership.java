@@ -8,7 +8,8 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-    private ArrayList <Vehicle> vehicle;
+    private ArrayList<Vehicle> vehicle;
+    List<Vehicle> inventory = new ArrayList<>();
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
@@ -85,10 +86,20 @@ public class Dealership {
                 .filter(v -> v.getVehicleType().toUpperCase().contains(vehicleType))
                 .toList();
     }
+
     public List<Vehicle> getVehiclesByVin(int vin) {
         return this.vehicle.stream()
                 .filter(v -> v.getVin() == vin)
                 .toList();
+    }
+
+    public Vehicle vehicleIsAvailable(int vin) {
+        for (Vehicle vehicleIsAvailable : inventory) {
+            if (vehicleIsAvailable.getVin() == vin) {
+                return vehicleIsAvailable;
+            }
+        }
+        return null;
     }
 
     public List<Vehicle> getAllVehicles() {
@@ -101,8 +112,26 @@ public class Dealership {
         this.vehicle.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {
-        this.vehicle.remove(vehicle);
+//    public void removeVehicle(Vehicle vehicle) {
+//        this.vehicle.remove(vehicle);
+//    }
+
+    public void removeVehicle(int vin) {
+        int counter = 0;
+        for (Vehicle vehicle : inventory) {
+            if (vin == vehicle.getVin()) {
+                inventory.remove(vehicle);
+                DealershipFileManager.saveDealership(DealershipFileManager.getDealership()); //might work
+                counter++;
+                break;
+            }
+        }
+        if (counter == 0) {
+            System.out.println("Vehicle could not be found 😦 ");
+        }
     }
-  
+
+    public void setInventory(ArrayList<Vehicle> inventory) {
+        this.inventory = inventory;
+    }
 }
