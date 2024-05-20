@@ -1,0 +1,5 @@
+SALE|20240520|hgfds|gfdsafds|Vehicle { vin=10112, year=1993, make='Ford', model='Explorer', vehicleType='SUV', color = Red, odometer=525123, price=995.00}|49.75|100.00|0.00|1144.75|YES|0.00
+SALE|20240520|fs|fds|Vehicle { vin=10112, year=1993, make='Ford', model='Explorer', vehicleType='SUV', color = Red, odometer=525123, price=995.00}|49.75|100.00|0.00|1144.75|YES|0.00
+SALE|20240520|fdsgfds|fdsgfds|Vehicle { vin=10112, year=1993, make='Ford', model='Explorer', vehicleType='SUV', color = Red, odometer=525123, price=995.00}|49.75|100.00|0.00|1144.75|YES|0.00
+SALE|20240520|fdsgfds|fdsfds|Vehicle { vin=44901, year=2012, make='Honda', model='Civic', vehicleType='SUV', color = Gray, odometer=103221, price=6995.00}|349.75|100.00|0.00|7444.75|No|0.00
+LEASE|20240520|gfds|gfgfds|Vehicle { vin=55744, year=1972, make='Pontiac', model='GTO', vehicleType='Coupe', color = Orange, odometer=87043, price=43500.00}|21750.00|3045.00|24795.00|65938.75

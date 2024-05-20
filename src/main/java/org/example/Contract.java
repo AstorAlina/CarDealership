@@ -16,7 +16,8 @@ public abstract class Contract {
     public abstract double getMonthlyPayment();
 
     public Contract(String customerName, String customerEmail, Vehicle vehicleSold) {
-        contractDate = String.valueOf(LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+        var currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        contractDate = currentDate;
         //this.contractDate = LocalDate.now().toString(); //test
         this.customerName = customerName;
         this.customerEmail = customerEmail;

@@ -117,17 +117,11 @@ public class Dealership {
 //    }
 
     public void removeVehicle(int vin) {
-        int counter = 0;
         for (Vehicle vehicle : inventory) {
             if (vin == vehicle.getVin()) {
                 inventory.remove(vehicle);
-                DealershipFileManager.saveDealership(DealershipFileManager.getDealership()); //might work
-                counter++;
                 break;
             }
-        }
-        if (counter == 0) {
-            System.out.println("Vehicle could not be found 😦 ");
         }
     }
 

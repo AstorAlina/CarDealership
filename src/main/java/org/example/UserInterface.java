@@ -11,8 +11,8 @@ public class UserInterface {
     private DealershipFileManager fileManager;
 
     public UserInterface() {
-        fileManager = new DealershipFileManager();
-        dealership = fileManager.getDealership();
+//        fileManager = new DealershipFileManager();
+//        dealership = fileManager.getDealership();
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -29,20 +29,20 @@ public class UserInterface {
         String input = scanner.nextLine().trim();
         switch (input) {
             case "1":
-                fileManager.setInputToFile("inventory.csv");
-                dealership = fileManager.getDealership();
-                System.out.println(fileManager.getInputToFile());
+                DealershipFileManager.setInputToFile("inventory.csv");
+                dealership = DealershipFileManager.getDealership();
+                System.out.println(DealershipFileManager.getInputToFile());
 //                fileManager.getDealership().getAllVehicles();
                 break;
             case "2":
-                fileManager.setInputToFile("inventory2.csv");
-                dealership = fileManager.getDealership();
-                System.out.println(fileManager.getInputToFile());
+                DealershipFileManager.setInputToFile("inventory2.csv");
+                dealership = DealershipFileManager.getDealership();
+                System.out.println(DealershipFileManager.getInputToFile());
                 break;
             case "3":
-                fileManager.setInputToFile("inventory3.csv");
-                dealership = fileManager.getDealership();
-                System.out.println(fileManager.getInputToFile());
+                DealershipFileManager.setInputToFile("inventory3.csv");
+                dealership = DealershipFileManager.getDealership();
+                System.out.println(DealershipFileManager.getInputToFile());
                 break;
             default:
                 break;
@@ -182,7 +182,7 @@ public class UserInterface {
         double price = Double.parseDouble(scanner.nextLine().trim());
         Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, odometer, price);
         dealership.addVehicle(vehicle);
-        fileManager.saveDealership(dealership);
+        DealershipFileManager.saveDealership(dealership);
         System.out.println("Vehicle added and saved successfully.");
         System.out.println("Here is a list of all vehicles:");
         displayVehicles(dealership.getAllVehicles());
@@ -205,7 +205,7 @@ public class UserInterface {
             System.out.println("Vehicle not found.");
         } else {
             dealership.removeVehicle(vin);
-            fileManager.saveDealership(dealership);
+            DealershipFileManager.saveDealership(dealership);
             System.out.println("Vehicle removed and saved successfully.");
             processGetAllVehiclesRequest();
         }
@@ -255,17 +255,14 @@ public class UserInterface {
         int vin = Integer.parseInt(scanner.nextLine());
         System.out.println("Would you like to finance?");
         String financeOption = scanner.nextLine();
-        if (financeOption.equalsIgnoreCase("No")) {
-            finance = false;
-
+        finance = !financeOption.equalsIgnoreCase("No");
 
             Vehicle vehicle = dealership.vehicleIsAvailable(vin);
             Contract contract = new SalesContract(name, email, vehicle, finance);
-
             ContractFileManager.saveContract(contract);
             dealership.removeVehicle(vin);
-            fileManager.saveDealership(dealership);
-        }
+            DealershipFileManager.saveDealership(dealership);
+
     }
         public void processLeaseVehicleRequest() {
             System.out.print("Enter your name: ");
@@ -276,11 +273,11 @@ public class UserInterface {
 
             System.out.print("Please enter the vin of the vehicle you would like to purchase: ");
             int vehicleVin = Integer.parseInt(scanner.nextLine());
-            Vehicle vehicle = (Vehicle) dealership.getVehiclesByVin(vehicleVin);
+            Vehicle vehicle = dealership.vehicleIsAvailable(vehicleVin);
             Contract contract = new LeaseContract(name, emailAddress, vehicle);
             ContractFileManager.saveContract(contract);
             dealership.removeVehicle(vehicleVin);
-            fileManager.saveDealership(dealership);
+            DealershipFileManager.saveDealership(dealership);
         }
 
 

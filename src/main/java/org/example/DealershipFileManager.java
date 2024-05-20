@@ -11,8 +11,8 @@ public class DealershipFileManager {
         return inputToFile;
     }
 
-    public void setInputToFile(String inputToFile) {
-        this.inputToFile = inputToFile;
+    public static void setInputToFile(String incomingFile) {
+        inputToFile = incomingFile;
     }
 
     private static final String INVENTORY_FILE = "src/main/resources/";
@@ -62,7 +62,7 @@ public class DealershipFileManager {
 
     //This method will overwrite the inventory.csv file with the current dealership information and inventory list
     public static void saveDealership(Dealership dealership) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(INVENTORY_FILE, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(INVENTORY_FILE + getInputToFile()))) {
             //need to write to csv the title line
             String titleToFile = String.format("%s|%s|%s", dealership.getName(), dealership.getAddress(), dealership.getPhone());
             writer.write(titleToFile);
