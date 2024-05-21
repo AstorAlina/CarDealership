@@ -251,6 +251,7 @@ public class UserInterface {
         System.out.println("Enter your email:");
         String email = scanner.nextLine();
         boolean finance = true;
+        processGetAllVehiclesRequest();
         System.out.println("Enter the VIN of the vehicle you'd like to buy:");
         int vin = Integer.parseInt(scanner.nextLine());
         System.out.println("Would you like to finance?");
