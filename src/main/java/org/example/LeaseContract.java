@@ -1,8 +1,12 @@
 package org.example;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.Contract;
 import org.example.Vehicle;
 import java.time.LocalDate;
+
 
 public class LeaseContract extends Contract {
 
